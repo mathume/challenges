@@ -38,7 +38,10 @@ namespace FraudPrevention.Tests.Unit
             };
 
             n.Normalize();
-            Assert.That(n.State.Value, Is.EqualTo(NormalizedValue));
+            foreach (var normalizable in new Normalizable[] { n.StreetAddress, n.State, n.City, n.ZipCode, n.EmailAddress })
+            {
+                Assert.That(normalizable.Value, Is.EqualTo(NormalizedValue));
+            }
         }
     }
 }

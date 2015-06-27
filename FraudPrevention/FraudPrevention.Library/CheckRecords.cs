@@ -42,8 +42,8 @@ namespace FraudPrevention
                                   CreditCardNumbers = coincide2.ToList().Select(r => r.CreditCardNumber)
                               };
             var fraudulent = new List<long>();
-            fraudulent.AddRange(fraudulent1.Where(r => r.CreditCardNumbers.Count() > 1).Select(r => r.DealId));
-            fraudulent.AddRange(fraudulent2.Where(r => r.CreditCardNumbers.Count() > 1).Select(r => r.DealId));
+            fraudulent.AddRange(fraudulent1.Where(r => r.CreditCardNumbers.Distinct().Count() > 1).Select(r => r.DealId));
+            fraudulent.AddRange(fraudulent2.Where(r => r.CreditCardNumbers.Distinct().Count() > 1).Select(r => r.DealId));
             fraudulent.Sort();
             return fraudulent.Distinct();
         }
